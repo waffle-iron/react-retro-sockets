@@ -1,5 +1,6 @@
 import '../styles/base.css';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal } from 'react-bootstrap';
 import classNames from 'classnames';
 const socket = io.connect();
@@ -61,4 +62,4 @@ const App = React.createClass({
   }
 });
 
-React.render((<App/>), document.getElementById('content'));
+ReactDOM.render((<App/>), document.getElementById('content'));
