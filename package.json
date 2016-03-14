@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node server.js",
     "postinstall": "webpack -p --config webpack.prod.config.js --profile --progress --colors"
   },
-  "author": "",
+  "author": "Alan B Smith",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^5.8.29",
