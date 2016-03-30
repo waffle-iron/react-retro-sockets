@@ -14,7 +14,9 @@ const Columns = (props) => {
     );
   });
   return (
-    <div>{columns}</div>
+    <div>
+    {columns}
+    </div>
   );
 };
 
