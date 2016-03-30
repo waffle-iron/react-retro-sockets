@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Modal } from 'react-bootstrap';
+import classNames from 'classnames';
 
 const ModalNote = React.createClass({
   getInitialState() {
@@ -7,28 +9,28 @@ const ModalNote = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    let name = React.findDOMNode(this.refs.name).value.trim()
-    let message = React.findDOMNode(this.refs.message).value.trim()
-    socket.emit('postit', { boardId: this.props.boardId, name: name, message: message, color: this.state.color})
+    let name = React.findDOMNode(this.refs.name).value.trim();
+    let message = React.findDOMNode(this.refs.message).value.trim();
+    this.props.setName(name);
+    socket.emit('postit', { columnId: this.props.columnId, name: name, message: message, color: this.state.color});
     this.hideModal();
   },
 
   handleButtonClick(event) {
-    let color = event.target.children[0].id
+    let color = event.target.children[0].id;
     if(color === ""){
       color = 'yellow'
     }
-    this.setState({color: color})
+    this.setState({color: color});
   },
 
   hideModal() {
-    this.props.hide()
+    this.props.hide();
   },
 
   render() {
-    let modalColor = ('modal-' + this.state.color)
-
-    let classes = classNames('modal-content', modalColor)
+    let modalColor = ('modal-' + this.state.color);
+    let classes = classNames('modal-content', modalColor);
 
     return(
       <Modal show={this.props.show} onHide={this.hideModal}>
@@ -48,7 +50,7 @@ const ModalNote = React.createClass({
                 <button className="btn btn-orange"><input type="radio" name="options" id="orange" autoComplete="off"/></button>
               </div>
               <form id='postit-modal-name'>
-                <input className='form-control input-lg' placeholder="What's your name?"ref='name'/>
+                <input className='form-control input-lg' placeholder="What's your name?"ref='name' value={this.props.name} />
               </form>
               <form id='postit-modal-message-1'>
                 <input className='form-control input-lg' placeholder="write here." ref='message'/>
@@ -61,4 +63,4 @@ const ModalNote = React.createClass({
   }
 });
 
-export default ModalNote
+export default ModalNote;

@@ -16,8 +16,8 @@ io.on('connection', function(client) {
     console.log(data);
   });
 
-  client.on('board', function(data) {
-    io.sockets.emit('new-board', data)
+  client.on('column', function(data) {
+    io.sockets.emit('new-column', data)
   })
 
   client.on('title', function(data) {
@@ -27,8 +27,6 @@ io.on('connection', function(client) {
   client.on('postit', function(data) {
     io.sockets.emit('new-postit', data)
   })
-
-
 });
 
 server.listen(8080);

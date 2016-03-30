@@ -8,6 +8,16 @@
   border-radius: 0;
 }
 
+.btn-plus-one {
+  float: right;
+  color: #262626;
+  background-color: #fef117;
+}
+
+.points {
+  font-size: 40px;
+}
+
 .glyphicon {
   color: #262626;
   font-size: 24px;
@@ -41,7 +51,7 @@
   height: 65px;
 }
 
-.col-sm-4 {
+.col-sm-3 {
   padding: 5px;
 }
 
@@ -191,7 +201,7 @@
 }
 
 .well {
-  padding: 2px; 
+  padding: 2px;
   margin-top: 5px;
   border-radius: 0;
   height: 40em;
@@ -219,7 +229,7 @@
   width: 30px;
   margin: 1px;
   background-color: #e8fd14;
-  border-color: #e8fd14;  
+  border-color: #e8fd14;
 }
 
 .modal-yellow {
@@ -235,7 +245,7 @@
   width: 30px;
   margin: 1px;
   background-color: #00adef;
-  border-color: #00adef;  
+  border-color: #00adef;
 }
 
 .modal-blue {
@@ -251,7 +261,7 @@
   width: 30px;
   margin: 1px;
   background-color: #81fe00;
-  border-color: #81fe00;  
+  border-color: #81fe00;
 }
 
 .modal-green {
@@ -283,7 +293,7 @@
   width: 30px;
   margin: 1px;
   background-color: #cc71ce;
-  border-color: #cc71ce;  
+  border-color: #cc71ce;
 }
 
 .modal-purple {
@@ -299,7 +309,7 @@
   width: 30px;
   margin: 1px;
   background-color: #fdb000;
-  border-color: #fdb000;  
+  border-color: #fdb000;
 }
 
 .modal-orange {
@@ -353,4 +363,3 @@
 .input-lg:focus {
   box-shadow: none;
 }
-
