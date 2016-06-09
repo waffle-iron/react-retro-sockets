@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Modal } from 'react-bootstrap';
+const socket = io.connect();
 
 const ModalNote = React.createClass({
   getInitialState() {
@@ -9,15 +10,14 @@ const ModalNote = React.createClass({
 
   handleSubmit(event) {
     event.preventDefault();
-    let name = React.findDOMNode(this.refs.name).value.trim()
-    let message = React.findDOMNode(this.refs.message).value.trim()
-    this.props.setName(name);
-    socket.emit('postit', { boardId: this.props.boardId, name: name, message: message, color: this.state.color})
+    let name = this.refs.name.value.trim()
+    let message = this.refs.message.value.trim()
+    socket.emit('postit', { columnId: this.props.columnId, name: name, message: message, color: this.state.color})
     this.hideModal();
   },
-  handleButtonClick(event) {
+  handleClick(event) {
     let color = event.target.children[0].id
-    if(color === ""){
+    if(!color){
       color = 'yellow'
     }
     this.setState({color: color})
@@ -27,7 +27,7 @@ const ModalNote = React.createClass({
   },
   render() {
     let modalColor = ('modal-' + this.state.color)
-    
+
     let classes = classNames('modal-content', modalColor)
 
     return(
@@ -39,8 +39,8 @@ const ModalNote = React.createClass({
             </Modal.Header>
             <Modal.Body onSubmit={this.handleSubmit}>
               <p>choose a color</p>
-              <div className="btn-group-1" data-toggle="buttons" onClick={this.handleButtonClick}>
-                <button className="btn btn-yellow"><input type="radio" name="options" id="yellow" autoComplete="off" checked /></button>
+              <div className="btn-group-1" data-toggle="buttons" onClick={this.handleClick}>
+                <button className="btn btn-yellow"><input type="radio" name="options" id="yellow" autoComplete="off" defaultChecked={true} /></button>
                 <button className="btn btn-blue"><input type="radio" name="options" id="blue" autoComplete="off"/></button>
                 <button className="btn btn-green"><input type="radio" name="options" id="green" autoComplete="off"/></button>
                 <button className="btn btn-pink"><input type="radio" name="options" id="pink" autoComplete="off"/></button>
@@ -48,7 +48,7 @@ const ModalNote = React.createClass({
                 <button className="btn btn-orange"><input type="radio" name="options" id="orange" autoComplete="off"/></button>
               </div>
               <form id='postit-modal-name'>
-                <input className='form-control input-lg' placeholder="What's your name?"ref='name' value={this.props.name}/>
+                <input className='form-control input-lg' placeholder="What's your name?"ref='name' defalutValue={this.props.name}/>
               </form>
               <form id='postit-modal-message-1'>
                 <input className='form-control input-lg' placeholder="write here." ref='message'/>

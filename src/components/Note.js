@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const PostIt = React.createClass({
+const Note = React.createClass({
   getInitialState() {
     return({points: 0})
   },
@@ -10,10 +10,10 @@ const PostIt = React.createClass({
     this.setState({ points: ++this.state.points });
   },
   render() {
-    
+
     let color = ('postit-' + this.props.color)
     let classes = classNames('thumbnail', 'post-it', color)
-    
+
     return(
       <div className={classes}>
         <button className='btn btn-plus-one' onClick={this.addPoint}>+1</button>
@@ -27,4 +27,4 @@ const PostIt = React.createClass({
   }
 });
 
-export default PostIt;
+export default Note;

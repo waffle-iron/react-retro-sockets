@@ -1,10 +1,12 @@
 import React from 'react';
 
+const socket = io.connect();
+
 const Title = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
-    let title = React.findDOMNode(this.refs.title).value.trim();
-    let data = {title: title, boardId: this.props.boardId }
+    let title = this.refs.title.value.trim();
+    let data = {title: title, columnId: this.props.columnId }
     socket.emit('title', data);
   },
   handleClick() {
