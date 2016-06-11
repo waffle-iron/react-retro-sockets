@@ -12,7 +12,7 @@ const ModalNote = React.createClass({
     event.preventDefault();
     let name = this.refs.name.value.trim()
     let message = this.refs.message.value.trim()
-    socket.emit('postit', { columnId: this.props.columnId, name: name, message: message, color: this.state.color})
+    socket.emit('note', { columnId: this.props.columnId, name: name, message: message, color: this.state.color})
     this.hideModal();
   },
   handleClick(event) {
@@ -26,9 +26,7 @@ const ModalNote = React.createClass({
     this.props.hide()
   },
   render() {
-    let modalColor = ('modal-' + this.state.color)
-
-    let classes = classNames('modal-content', modalColor)
+    let classes = classNames('modal-content', this.state.color)
 
     return(
       <Modal show={this.props.show} onHide={this.hideModal}>
@@ -40,17 +38,17 @@ const ModalNote = React.createClass({
             <Modal.Body onSubmit={this.handleSubmit}>
               <p>choose a color</p>
               <div className="btn-group-1" data-toggle="buttons" onClick={this.handleClick}>
-                <button className="btn btn-yellow"><input type="radio" name="options" id="yellow" autoComplete="off" defaultChecked={true} /></button>
-                <button className="btn btn-blue"><input type="radio" name="options" id="blue" autoComplete="off"/></button>
-                <button className="btn btn-green"><input type="radio" name="options" id="green" autoComplete="off"/></button>
-                <button className="btn btn-pink"><input type="radio" name="options" id="pink" autoComplete="off"/></button>
-                <button className="btn btn-purple"><input type="radio" name="options" id="purple" autoComplete="off"/></button>
-                <button className="btn btn-orange"><input type="radio" name="options" id="orange" autoComplete="off"/></button>
+                <button className="btn btn-option yellow"><input type="radio" name="options" id="yellow" autoComplete="off" defaultChecked={true} /></button>
+                <button className="btn btn-option blue"><input type="radio" name="options" id="blue" autoComplete="off"/></button>
+                <button className="btn btn-option green"><input type="radio" name="options" id="green" autoComplete="off"/></button>
+                <button className="btn btn-option pink"><input type="radio" name="options" id="pink" autoComplete="off"/></button>
+                <button className="btn btn-option purple"><input type="radio" name="options" id="purple" autoComplete="off"/></button>
+                <button className="btn btn-option orange"><input type="radio" name="options" id="orange" autoComplete="off"/></button>
               </div>
-              <form id='postit-modal-name'>
+              <form id='note-modal-name'>
                 <input className='form-control input-lg' placeholder="What's your name?"ref='name' defalutValue={this.props.name}/>
               </form>
-              <form id='postit-modal-message-1'>
+              <form id='note-modal-message-1'>
                 <input className='form-control input-lg' placeholder="write here." ref='message'/>
               </form>
             </Modal.Body>

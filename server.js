@@ -19,7 +19,7 @@ if(process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', function(request, response) {
+app.get('*', function(request, response) {
   response.sendFile(__dirname + '/dist/index.html')
 });
 
@@ -38,8 +38,8 @@ io.on('connection', function(client) {
     io.sockets.emit('new-title', data)
   });
 
-  client.on('postit', function(data) {
-    io.sockets.emit('new-postit', data)
+  client.on('note', function(data) {
+    io.sockets.emit('new-note', data)
   });
 
 });
